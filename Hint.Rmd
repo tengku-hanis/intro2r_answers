@@ -1,0 +1,79 @@
+---
+title: "Hint for data visualisation with ggplot2 exercise"
+author: "Tengku Muhammad Hanis"
+date: '2023-09-19'
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+data("iris")
+```
+
+## Data
+
+<details>
+  <summary>Show explanation</summary>
+We going to use iris data. See this [link](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html) for the description of the iris data.
+
+```{r}
+skimr::skim(iris)
+```
+</details>
+
+## Question 1
+
+Make histogram for variable Sepal.Length and give title for the histogram plot.
+
+<details>
+  <summary>Show hint</summary>
+```{r cars}
+ggplot(data = iris, mapping = aes(x = Sepal.Length)) +
+  geom_histogram() +
+  labs(title = "Histogram of Sepal.Length")
+```
+</details>
+
+## Question 2
+
+Make a scatter plot between variables Sepal.Width and Petal.Width and give different colors for each species (variable Species).
+
+<details>
+  <summary>Show hint</summary>
+```{r}
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width, color = Species)) +
+  geom_point() 
+```
+</details>
+
+Next, separate the scatter plot, so that each species is its own plot.
+
+<details>
+  <summary>Show hint</summary>
+```{r}
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width, color = Species)) +
+  geom_point() +
+  facet_grid(~Species)
+```
+</details>
+
+## Question 3
+
+Make a line plot on top of a scatter plot between variables Sepal.Length and Petal.Length and give different colors for each species (variable Species).
+
+<details>
+  <summary>Show hint</summary>
+```{r}
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
+  geom_point() +
+  geom_line()
+```
+</details>
